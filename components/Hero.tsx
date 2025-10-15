@@ -105,7 +105,7 @@ export default function Hero() {
                   {/* Mobile Video */}
                   <div className="absolute inset-4 sm:inset-6 lg:inset-8 rounded-xl sm:rounded-2xl bg-white shadow-inner overflow-hidden">
                     <video 
-                      src="/videos/demos/phoneDemo.mov" 
+                      src="/videos/demos/video.mov" 
                       autoPlay 
                       muted 
                       loop 

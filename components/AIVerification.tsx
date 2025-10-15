@@ -86,11 +86,12 @@ export default function AIVerification() {
         </div>
         
         {/* Stats Section */}
-        <div className="mt-12 sm:mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto px-4">
+        <div className="mt-12 sm:mt-16 lg:mt-20 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto px-4">
           {[
             { number: "95%+", label: "Content Accuracy" },
             { number: "Instant", label: "AI Responses" },
             { number: "24/7", label: "AI Monitoring" },
+            { number: "10X", label: "Creator Earnings" },
           ].map((stat) => (
             <div key={stat.label} className="text-center group">
               <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 sm:mb-3">
