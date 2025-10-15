@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 
 const tiers = [
   { name: "GenZ Creator", rpm: "$5–$12", features: ["Upload news videos", "Write articles + sources"] },

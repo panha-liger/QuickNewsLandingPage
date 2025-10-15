@@ -133,7 +133,7 @@ export default function SuccessModal({ isOpen, onClose, userRole }: SuccessModal
                 onClick={onClose}
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
               >
-                Awesome! Let's Go
+                Awesome! Let&apos;s Go
               </button>
             </div>
           </div>
