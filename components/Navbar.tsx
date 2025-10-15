@@ -29,7 +29,7 @@ export default function Navbar() {
               alt="QuickNews Logo" 
               width={120} 
               height={120}
-              className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 object-contain"
+              className="w-24 h-24 sm:w-28 sm:h-28 lg:w-36 lg:h-36 object-contain"
               priority
             />
           </Link>

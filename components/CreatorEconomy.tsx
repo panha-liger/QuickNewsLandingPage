@@ -1,9 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const tiers = [
-  { name: "GenZ Creator", rpm: "$5–$12", features: ["Upload news videos", "Write articles + sources"] },
-  { name: "Verified Creator", rpm: "$12–$25", features: ["AI fact-checking", "Priority placement"] },
-  { name: "Pro Creator", rpm: "$25+", features: ["Advanced analytics", "10X TikTok earnings"] },
+  { name: "Early Creator", rpm: "$1", features: ["Daily post requirement", "Basic analytics", "Community access"] },
+  { name: "Hired Creator", rpm: "$1.2/1000 views", features: ["Passed our test", "Priority placement", "Advanced analytics"] },
 ];
 
 export default function CreatorEconomy() {
@@ -33,14 +32,14 @@ export default function CreatorEconomy() {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {tiers.map((t, index) => (
             <div 
               key={t.name} 
-              className={`group relative ${t.name === "Verified" ? "md:-mt-8" : ""}`}
+              className={`group relative ${t.name === "Hired Creator" ? "md:-mt-8" : ""}`}
               style={{ animationDelay: `${index * 200}ms` }}
             >
-              {t.name === "Verified" && (
+              {t.name === "Hired Creator" && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
                   <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                     Most Popular
@@ -48,18 +47,18 @@ export default function CreatorEconomy() {
                 </div>
               )}
               <Card className={`relative h-full text-center border-0 bg-white/90 backdrop-blur-xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 ${
-                t.name === "Verified" 
+                t.name === "Hired Creator" 
                   ? "ring-2 ring-green-200/50 bg-gradient-to-br from-green-50/50 to-blue-50/50" 
                   : "group-hover:rotate-1"
               }`}>
                 <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
-                  t.name === "Verified" 
+                  t.name === "Hired Creator" 
                     ? "bg-gradient-to-br from-green-50/50 to-blue-50/50" 
                     : "bg-gradient-to-br from-purple-50/50 to-pink-50/50"
                 }`}></div>
                 <CardHeader className="relative z-10 pb-4">
                   <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center shadow-lg ${
-                    t.name === "Verified" 
+                    t.name === "Hired Creator" 
                       ? "bg-gradient-to-br from-green-500 to-blue-600" 
                       : "bg-gradient-to-br from-purple-500 to-pink-600"
                   }`}>
