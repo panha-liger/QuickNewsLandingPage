@@ -1,0 +1,27 @@
+{
+  "name": "QuickNews - AI-Verified Short-Form News",
+  "short_name": "QuickNews",
+  "description": "Get quick, AI-verified news from trusted creators. Earn 10X more than TikTok by sharing real news.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3B82F6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["news", "social", "productivity"],
+  "lang": "en",
+  "dir": "ltr"
+}
