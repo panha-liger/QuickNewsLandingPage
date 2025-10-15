@@ -1,8 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const tiers = [
-  { name: "Early Creator", rpm: "$1", features: ["Daily post requirement", "Basic analytics", "Community access"] },
-  { name: "Hired Creator", rpm: "$1.2/1000 views", features: ["Passed our test", "Priority placement", "Advanced analytics"] },
+  { name: "Early Creator", pricing: "$1 daily", features: ["Daily post requirement", "Basic analytics", "Community access"] },
+  { name: "Hired Creator", pricing: "$1.2/1000 views", features: ["Passed our test", "Priority placement", "Advanced analytics"] },
 ];
 
 export default function CreatorEconomy() {
@@ -66,7 +66,7 @@ export default function CreatorEconomy() {
                   </div>
                   <CardTitle className="text-2xl font-bold text-text mb-2">{t.name}</CardTitle>
                   <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-4">
-                    {t.rpm} RPM
+                    {t.pricing}
                   </div>
                 </CardHeader>
                 <CardContent className="relative z-10">

@@ -15,7 +15,7 @@ export default function FinalCTA() {
             Don&apos;t Miss Out
             <br />
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Join <AnimatedCounter end={10000} className="font-mono font-black" />+ Early Users
+              Join <AnimatedCounter end={1000} className="font-mono font-black" /> Early Users
             </span>
           </h2>
           
