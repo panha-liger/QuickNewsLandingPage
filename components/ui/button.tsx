@@ -41,8 +41,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     if (asChild && React.isValidElement(children)) {
       // If asChild is true, we expect the child to be a Link or similar component
       return React.cloneElement(children, {
-        className: cn(buttonVariants({ variant, size }), className, children.props.className),
-        ...children.props,
+        className: cn(buttonVariants({ variant, size }), className, (children.props as any)?.className),
+        ...(children.props as any),
       });
     }
     
