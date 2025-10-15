@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "QuickNews",
     images: [
       {
-        url: "/images/logos/Main pageg.png",
+        url: "/images/logos/mainLogoHeader.png",
         width: 1200,
         height: 630,
         alt: "QuickNews Logo",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "QuickNews - AI-Verified Short-Form News",
     description: "Get quick, AI-verified news from trusted creators. Earn 10X more than TikTok by sharing real news.",
-    images: ["/images/logos/Main pageg.png"],
+    images: ["/images/logos/mainLogoHeader.png"],
   },
   robots: {
     index: true,
