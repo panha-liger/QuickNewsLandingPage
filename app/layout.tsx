@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "QuickNews",
     images: [
       {
-        url: "/images/logos/mainLogoHeader.png",
+        url: "/images/logos/Quick-News-Logo_FA-1.png",
         width: 1200,
         height: 630,
         alt: "QuickNews Logo",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "QuickNews - AI-Verified Short-Form News",
     description: "Get quick, AI-verified news from trusted creators. Earn 10X more than TikTok by sharing real news.",
-    images: ["/images/logos/mainLogoHeader.png"],
+    images: ["/images/logos/Quick-News-Logo_FA-1.png"],
   },
   robots: {
     index: true,
@@ -68,24 +68,24 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.png", type: "image/png" },
+      { url: "/favicon.ico?v=2", sizes: "any" },
+      { url: "/favicon.png?v=2", type: "image/png" },
     ],
     apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/apple-touch-icon.png?v=2", sizes: "180x180", type: "image/png" },
     ],
     other: [
       {
         rel: "icon",
         type: "image/png",
         sizes: "192x192",
-        url: "/icon-192.png",
+        url: "/icon-192.png?v=2",
       },
       {
         rel: "icon",
         type: "image/png",
         sizes: "512x512",
-        url: "/icon-512.png",
+        url: "/icon-512.png?v=2",
       },
     ],
   },
