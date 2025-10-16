@@ -44,13 +44,13 @@ export default function AIVerification() {
             <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
             AI-Powered Technology
           </div>
-          <h2 className="font-newsreader text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-text mb-6 sm:mb-8 px-4">
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Chat with AI
-            </span>
-            <br />
-            About Any Video
-          </h2>
+                  <h2 className="font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-text mb-6 sm:mb-8 px-4">
+                    <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                      Chat with AI
+                    </span>
+                    <br />
+                    About Any Video
+                  </h2>
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground max-w-3xl sm:max-w-4xl mx-auto leading-relaxed px-4">
             Ask AI questions about any news video. Get instant verification, 
             source checks, and credibility analysis in real-time.
@@ -94,7 +94,7 @@ export default function AIVerification() {
             { number: "10X", label: "Creator Earnings" },
           ].map((stat) => (
             <div key={stat.label} className="text-center group">
-              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-1 sm:mb-2">
+              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-1 sm:mb-2">
                 {stat.number}
               </div>
               <div className="text-xs sm:text-sm lg:text-base text-muted-foreground font-medium">

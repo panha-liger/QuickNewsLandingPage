@@ -4,7 +4,7 @@ const items = [
   { 
     value: "q1", 
     trigger: "How much can creators earn?", 
-    content: "Creators earn 10X more than TikTok! GenZ creators typically earn $5-$12 per 1000 views, while verified creators can earn $12-$25+ per 1000 views. Pro creators with high engagement earn $25+ per 1000 views." 
+    content: "Creators earn $1.20 per 1,000 views." 
   },
   { 
     value: "q2", 
@@ -14,12 +14,12 @@ const items = [
   { 
     value: "q3", 
     trigger: "What makes QuickNews different?", 
-    content: "Unlike TikTok or other platforms, every news video comes with a written article and verified sources. Our AI verifies claims and provides credibility analysis, so you always know if the news is real." 
+    content: "We're the first news platform focused on serving Gen Zs, and our content creators are curated to guarantee you see content you can trust—and content you love." 
   },
   { 
     value: "q4", 
     trigger: "Who can become a creator?", 
-    content: "Anyone can be a creator! We welcome GenZ creators who want to share real news. You just need to write articles with your videos and provide sources. No special requirements - just authentic news content." 
+    content: "We believe anyone with digital literacy and media literacy can be an awesome creator." 
   },
   { 
     value: "q5", 
@@ -47,10 +47,10 @@ export default function FAQ() {
             <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
             Frequently Asked Questions
           </div>
-          <h2 className="font-newsreader text-4xl sm:text-5xl lg:text-6xl font-bold text-text mb-6">
+          <h2 className="font-poppins text-4xl sm:text-5xl lg:text-6xl font-bold text-text mb-6">
             Got Questions?
             <br />
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
               We Have Answers
             </span>
           </h2>

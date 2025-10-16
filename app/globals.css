@@ -71,6 +71,6 @@
   body {
     @apply bg-background text-foreground antialiased;
     background-image: theme('backgroundImage.softRadial');
-    font-family: var(--font-inter), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-family: var(--font-poppins), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   }
 }
