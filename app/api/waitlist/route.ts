@@ -76,10 +76,19 @@ export async function POST(req: NextRequest) {
 }
 
 async function sendThankYouEmail(email: string, role?: string) {
-  // Using a simple email service - you can replace this with your preferred service
+  console.log(`Attempting to send email to: ${email}`);
+  
+  // Check if we have Resend API key
+  const resendApiKey = process.env.RESEND_API_KEY;
+  
+  if (!resendApiKey) {
+    console.log('No RESEND_API_KEY found, skipping email send');
+    return { success: false, reason: 'No API key configured' };
+  }
+
   const emailData = {
-    to: email,
-    from: 'QuickNews <noreply@quicknews.tech>', // This will be your domain
+    from: 'QuickNews <noreply@quicknews.tech>',
+    to: [email],
     subject: 'Welcome to QuickNews! 🎉',
     html: `
       <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
@@ -126,49 +135,32 @@ async function sendThankYouEmail(email: string, role?: string) {
         </div>
       </div>
     `,
-    text: `
-      Welcome to QuickNews! 🎉
-      
-      Thank you for joining our waitlist! We're excited to have you on board as we build the future of news for Gen Z.
-      
-      What's Next?
-      - You'll be among the first to know when we launch
-      - Get early access to our creator program
-      - Join our community of verified news creators
-      - Earn 60x more than TikTok sharing real news
-      
-      Follow us for updates on Twitter, Instagram, and TikTok.
-      
-      This email was sent to ${email} because you joined the QuickNews waitlist.
-      If you didn't sign up, you can safely ignore this email.
-    `
   };
 
-  // For now, we'll use a simple fetch to a free email service
-  // You can replace this with Resend, SendGrid, or any other email service
-  const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      service_id: 'your_service_id', // You'll need to set this up
-      template_id: 'your_template_id', // You'll need to set this up
-      user_id: 'your_user_id', // You'll need to set this up
-      template_params: {
-        to_email: email,
-        from_name: 'QuickNews',
-        message: emailData.html,
-        subject: emailData.subject
-      }
-    })
-  });
+  try {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${resendApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(emailData),
+    });
 
-  if (!response.ok) {
-    throw new Error(`Email service error: ${response.statusText}`);
+    const result = await response.json();
+    
+    if (!response.ok) {
+      console.error('Resend API error:', result);
+      throw new Error(`Resend API error: ${result.message || response.statusText}`);
+    }
+
+    console.log('Email sent successfully:', result);
+    return { success: true, result };
+    
+  } catch (error) {
+    console.error('Email sending failed:', error);
+    throw error;
   }
-
-  return response.json();
 }
 
 
