@@ -47,11 +47,11 @@ export default function Hero() {
               <h3 className="font-poppins text-2xl sm:text-3xl font-bold text-text mb-3 sm:mb-4">Desktop Experience</h3>
                       <p className="text-base sm:text-lg text-muted-foreground">News on your Desktop!</p>
             </div>
-            <div className="relative group max-w-4xl sm:max-w-5xl mx-auto px-4">
+            <div className="relative group max-w-5xl sm:max-w-6xl mx-auto px-4">
               <div className="rounded-2xl sm:rounded-3xl border border-gray-200/40 bg-gradient-to-br from-white/90 to-gray-50/90 backdrop-blur-xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500 transform group-hover:scale-[1.02]">
                 <div className="relative aspect-[16/10] bg-gray-100 overflow-hidden">
                   {/* Desktop Video */}
-                  <div className="absolute inset-4 sm:inset-6 lg:inset-8 rounded-lg bg-white shadow-inner overflow-hidden">
+                  <div className="absolute inset-2 sm:inset-3 lg:inset-4 rounded-lg bg-white shadow-inner overflow-hidden">
                     <video 
                       src="/videos/demos/Mac.mov" 
                       autoPlay 
@@ -72,11 +72,11 @@ export default function Hero() {
               <h3 className="font-poppins text-2xl sm:text-3xl font-bold text-text mb-3 sm:mb-4">Mobile App</h3>
                       <p className="text-base sm:text-lg text-muted-foreground">Scroll seamlessly!</p>
             </div>
-            <div className="relative group max-w-xs sm:max-w-sm mx-auto px-4">
+            <div className="relative group max-w-sm sm:max-w-md mx-auto px-4">
               <div className="rounded-[2rem] sm:rounded-[3rem] border border-gray-200/40 bg-gradient-to-br from-white/90 to-gray-50/90 backdrop-blur-xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500 transform group-hover:scale-[1.05] group-hover:rotate-1">
                 <div className="relative aspect-[9/16] bg-gray-100 overflow-hidden">
                   {/* Mobile Video */}
-                  <div className="absolute inset-4 sm:inset-6 lg:inset-8 rounded-xl sm:rounded-2xl bg-white shadow-inner overflow-hidden">
+                  <div className="absolute inset-2 sm:inset-3 lg:inset-4 rounded-xl sm:rounded-2xl bg-white shadow-inner overflow-hidden">
                     <video 
                       src="/videos/demos/video.mov" 
                       autoPlay 
