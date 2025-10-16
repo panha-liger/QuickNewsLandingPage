@@ -61,10 +61,114 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "insert_failed" }, { status: 500 });
     }
 
+    // Send thank you email
+    try {
+      await sendThankYouEmail(email, body.role);
+    } catch (emailError) {
+      console.error('Email sending failed:', emailError);
+      // Don't fail the request if email fails, just log it
+    }
+
     return NextResponse.json({ status: "ok", data }, { status: 200 });
   } catch {
     return NextResponse.json({ error: "bad_request" }, { status: 400 });
   }
+}
+
+async function sendThankYouEmail(email: string, role?: string) {
+  // Using a simple email service - you can replace this with your preferred service
+  const emailData = {
+    to: email,
+    from: 'QuickNews <noreply@quicknews.tech>', // This will be your domain
+    subject: 'Welcome to QuickNews! 🎉',
+    html: `
+      <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <img src="https://www.quicknews.tech/images/logos/Quick-News-Logo_FA-1.png" alt="QuickNews Logo" style="width: 120px; height: auto; margin-bottom: 20px;">
+        </div>
+        
+        <h1 style="color: #1e40af; font-size: 28px; font-weight: 600; text-align: center; margin-bottom: 20px;">
+          Welcome to QuickNews! 🎉
+        </h1>
+        
+        <p style="color: #374151; font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
+          Thank you for joining our waitlist! We're excited to have you on board as we build the future of news for Gen Z.
+        </p>
+        
+        <div style="background-color: #f3f4f6; padding: 20px; border-radius: 12px; margin: 20px 0;">
+          <h2 style="color: #1e40af; font-size: 20px; margin-bottom: 15px;">What's Next?</h2>
+          <ul style="color: #374151; font-size: 14px; line-height: 1.6; padding-left: 20px;">
+            <li>You'll be among the first to know when we launch</li>
+            <li>Get early access to our creator program</li>
+            <li>Join our community of verified news creators</li>
+            <li>Earn 60x more than TikTok sharing real news</li>
+          </ul>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+          <p style="color: #6b7280; font-size: 14px; margin-bottom: 10px;">
+            Follow us for updates:
+          </p>
+          <div style="display: flex; justify-content: center; gap: 20px;">
+            <a href="#" style="color: #1e40af; text-decoration: none; font-weight: 500;">Twitter</a>
+            <a href="#" style="color: #1e40af; text-decoration: none; font-weight: 500;">Instagram</a>
+            <a href="#" style="color: #1e40af; text-decoration: none; font-weight: 500;">TikTok</a>
+          </div>
+        </div>
+        
+        <div style="border-top: 1px solid #e5e7eb; padding-top: 20px; margin-top: 30px; text-align: center;">
+          <p style="color: #9ca3af; font-size: 12px; margin: 0;">
+            This email was sent to ${email} because you joined the QuickNews waitlist.
+          </p>
+          <p style="color: #9ca3af; font-size: 12px; margin: 5px 0 0 0;">
+            If you didn't sign up, you can safely ignore this email.
+          </p>
+        </div>
+      </div>
+    `,
+    text: `
+      Welcome to QuickNews! 🎉
+      
+      Thank you for joining our waitlist! We're excited to have you on board as we build the future of news for Gen Z.
+      
+      What's Next?
+      - You'll be among the first to know when we launch
+      - Get early access to our creator program
+      - Join our community of verified news creators
+      - Earn 60x more than TikTok sharing real news
+      
+      Follow us for updates on Twitter, Instagram, and TikTok.
+      
+      This email was sent to ${email} because you joined the QuickNews waitlist.
+      If you didn't sign up, you can safely ignore this email.
+    `
+  };
+
+  // For now, we'll use a simple fetch to a free email service
+  // You can replace this with Resend, SendGrid, or any other email service
+  const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      service_id: 'your_service_id', // You'll need to set this up
+      template_id: 'your_template_id', // You'll need to set this up
+      user_id: 'your_user_id', // You'll need to set this up
+      template_params: {
+        to_email: email,
+        from_name: 'QuickNews',
+        message: emailData.html,
+        subject: emailData.subject
+      }
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error(`Email service error: ${response.statusText}`);
+  }
+
+  return response.json();
 }
 
 
