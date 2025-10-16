@@ -35,11 +35,7 @@ const items = [
 
 export default function FAQ() {
   return (
-    <section id="faq" className="relative py-20 sm:py-24 lg:py-32 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50/30"></div>
-      <div className="absolute top-20 right-20 w-72 h-72 bg-blue-100/20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-100/20 rounded-full blur-3xl"></div>
+    <section id="faq" className="relative py-20 sm:py-24 lg:py-32 overflow-hidden bg-white">
       
       <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">

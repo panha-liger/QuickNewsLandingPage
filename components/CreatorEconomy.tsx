@@ -7,11 +7,7 @@ const tiers = [
 
 export default function CreatorEconomy() {
   return (
-    <section id="pricing" className="relative py-32 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-50/30 via-white to-blue-50/30"></div>
-      <div className="absolute top-20 right-20 w-72 h-72 bg-purple-100/20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-20 w-96 h-96 bg-blue-100/20 rounded-full blur-3xl"></div>
+    <section id="pricing" className="relative py-32 overflow-hidden bg-white">
       
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">

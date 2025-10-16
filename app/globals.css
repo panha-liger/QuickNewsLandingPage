@@ -69,8 +69,7 @@
     @apply h-full;
   }
   body {
-    @apply bg-background text-foreground antialiased;
-    background-image: theme('backgroundImage.softRadial');
+    @apply bg-white text-foreground antialiased;
     font-family: var(--font-poppins), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   }
 }

@@ -32,11 +32,7 @@ const features = [
 
 export default function AIVerification() {
   return (
-    <section id="ai" className="relative py-32 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-blue-50/30 to-purple-50/30"></div>
-      <div className="absolute top-1/4 left-10 w-64 h-64 bg-blue-100/20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-purple-100/20 rounded-full blur-3xl"></div>
+    <section id="ai" className="relative py-32 overflow-hidden bg-white">
       
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16 lg:mb-20">
@@ -86,12 +82,11 @@ export default function AIVerification() {
         </div>
         
         {/* Stats Section */}
-        <div className="mt-8 sm:mt-12 lg:mt-16 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 max-w-5xl mx-auto px-4">
+        <div className="mt-8 sm:mt-12 lg:mt-16 grid grid-cols-3 gap-2 sm:gap-3 lg:gap-4 max-w-3xl mx-auto px-4">
           {[
             { number: "95%+", label: "Content Accuracy" },
             { number: "Instant", label: "AI Responses" },
             { number: "24/7", label: "AI Monitoring" },
-            { number: "10X", label: "Creator Earnings" },
           ].map((stat) => (
             <div key={stat.label} className="text-center group">
               <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-1 sm:mb-2">
