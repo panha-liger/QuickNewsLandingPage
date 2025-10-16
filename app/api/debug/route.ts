@@ -6,5 +6,7 @@ export async function GET() {
     hasSupabaseKey: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL ? "Set" : "Not set",
     supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? "Set" : "Not set",
+    timestamp: new Date().toISOString(),
+    deployment: "v2.0"
   });
 }
