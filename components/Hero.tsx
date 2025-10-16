@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 
 export default function Hero() {
@@ -50,18 +49,7 @@ export default function Hero() {
             </div>
             <div className="relative group max-w-4xl sm:max-w-5xl mx-auto px-4">
               <div className="rounded-2xl sm:rounded-3xl border border-gray-200/40 bg-gradient-to-br from-white/90 to-gray-50/90 backdrop-blur-xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500 transform group-hover:scale-[1.02]">
-                <div className="relative aspect-[16/10] bg-gradient-to-br from-slate-50 to-slate-100 overflow-hidden">
-                  {/* 3D Background */}
-                  <div className="absolute inset-0 opacity-20">
-                    <Image 
-                      src="/images/image3d/3dpersonHolingContent.png" 
-                      alt="3D Background" 
-                      fill 
-                      className="object-cover"
-                    />
-                  </div>
-                  {/* Wave Animation */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-200/30 via-purple-200/30 to-blue-200/30 animate-pulse"></div>
+                <div className="relative aspect-[16/10] bg-gray-100 overflow-hidden">
                   {/* Desktop Video */}
                   <div className="absolute inset-4 sm:inset-6 lg:inset-8 rounded-lg bg-white shadow-inner overflow-hidden">
                     <video 
@@ -86,18 +74,7 @@ export default function Hero() {
             </div>
             <div className="relative group max-w-xs sm:max-w-sm mx-auto px-4">
               <div className="rounded-[2rem] sm:rounded-[3rem] border border-gray-200/40 bg-gradient-to-br from-white/90 to-gray-50/90 backdrop-blur-xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500 transform group-hover:scale-[1.05] group-hover:rotate-1">
-                <div className="relative aspect-[9/16] bg-gradient-to-br from-slate-50 to-slate-100 overflow-hidden">
-                  {/* 3D Background */}
-                  <div className="absolute inset-0 opacity-20">
-                    <Image 
-                      src="/images/image3d/sittingmakingvideo.png" 
-                      alt="3D Background" 
-                      fill 
-                      className="object-cover"
-                    />
-                  </div>
-                  {/* Wave Animation */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-green-200/30 via-blue-200/30 to-purple-200/30 animate-pulse"></div>
+                <div className="relative aspect-[9/16] bg-gray-100 overflow-hidden">
                   {/* Mobile Video */}
                   <div className="absolute inset-4 sm:inset-6 lg:inset-8 rounded-xl sm:rounded-2xl bg-white shadow-inner overflow-hidden">
                     <video 
