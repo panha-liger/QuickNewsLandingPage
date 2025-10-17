@@ -11,6 +11,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         poppins: ["var(--font-poppins)", "system-ui", "sans-serif"],
+        telegraf: ['Telegraf', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
