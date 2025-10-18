@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+
 
 interface ContentSectionProps {
     text: string | React.ReactNode;
@@ -9,38 +9,11 @@ interface ContentSectionProps {
 }
 
 export default function ContentSection({ text, src, order }: ContentSectionProps) {
-    const videoRef = useRef<HTMLVideoElement>(null);
-    const [poster, setPoster] = useState<string>('');
-
-    useEffect(() => {
-        const video = videoRef.current;
-        if (!video) return;
-
-        const generatePoster = () => {
-            try {
-                const canvas = document.createElement('canvas');
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                const ctx = canvas.getContext('2d');
-                if (ctx) {
-                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                    const posterUrl = canvas.toDataURL('image/jpeg', 0.8);
-                    setPoster(posterUrl);
-                }
-            } catch (error) {
-                console.error('Failed to generate poster:', error);
-            }
-        };
-
-        video.addEventListener('loadeddata', generatePoster);
-        return () => video.removeEventListener('loadeddata', generatePoster);
-    }, [src]);
 
     const VideoElement = () => (
         <video
-            ref={videoRef}
             src={src}
-            poster={poster}
+            poster={"/poster.png"}
             autoPlay
             muted
             loop
