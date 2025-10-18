@@ -26,7 +26,7 @@ export default function Content() {
                 order={2}
             />
             <ContentSection
-                text={<><p>Afraid to speak?</p><p>Afraid to share?</p><p>Don&apos;t be.</p></>}
+                text={<><p>Afraid to speak?</p><p className='mt-6'>Afraid to share?</p><p className='mt-6'>Don&apos;t be.</p></>}
                 src="/videos/qnmockupvids/shareyourthoughts.mp4"
                 order={1}
             />
