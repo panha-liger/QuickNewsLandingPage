@@ -121,7 +121,7 @@ export default function JoinWaitlist() {
             disabled={status === "loading"}
             className="bg-black text-white font-bold px-8 py-3 text-lg rounded-full font-telegraf hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {status === "loading" ? "JOINING..." : "JOIN WAITLIST"}
+            {status === "loading" ? "JOINING..." : "JOIN THE WAITLIST"}
           </button>
         </div>
 
