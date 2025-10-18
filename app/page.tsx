@@ -14,7 +14,7 @@ export default function Page() {
         <>
             {/* <Navbar /> */}
             <Hero />
-            <Counter />
+            {/* <Counter /> */}
             <Content />
             {/* <CreatorEconomy /> */}
             <Waitlist />

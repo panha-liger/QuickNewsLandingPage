@@ -8,9 +8,9 @@ export default function Waitlist() {
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className=" text-6xl sm:text-6xl lg:text-6xl font-bold text-text mb-4 sm:mb-6">
-            Don&apos;t Miss Out 
+            Don&apos;t Miss Out
           </h2>
-          <div className="h-0.5 w-1/2 mt-12 mx-auto bg-gray-200 rounded-full"></div>
+          <p className="text-2xl  font-bold text-gray-500 text-center">Your info is safe. We won&apos;t share or spam.</p>
         </div>
 
         <div className="max-w-4xl mx-auto">

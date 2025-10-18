@@ -70,10 +70,10 @@ export default function Counter() {
 
         return (
             <div className="flex flex-col items-center gap-2">
-                <p className="text-sm font-telegraf font-bold uppercase tracking-wider text-black/60">
+                <p className="text-sm  font-bold uppercase tracking-wider text-black/60">
                     {label}
                 </p>
-                <p className="text-6xl font-telegraf font-bold text-black tabular-nums">
+                <p className="text-6xl font-bold text-black tabular-nums">
                     {loading ? '—' : animatedValue.toLocaleString()}
                 </p>
             </div>
@@ -82,13 +82,13 @@ export default function Counter() {
 
     return (
         <div className="w-full max-w-4xl mx-auto px-4 mt-40">
-            <h1 className="text-6xl  font-bold text-black text-center">Waitlisting</h1>
+            <h1 className="text-6xl  font-bold text-black text-center">Waitlisted</h1>
             <div className="flex  justify-around items-center gap-8 py-12  border-black rounded-3xl bg-white">
-                <StatItem label="Total" value={stats.total} />
-                <div className="h-20 w-px bg-black/20" />
-                <StatItem label="Consumers" value={stats.userCount} />
-                <div className="h-20 w-px bg-black/20" />
-                <StatItem label="Creators" value={stats.creatorCount} />
+                {/* <StatItem label="Total" value={stats.total} />
+                <div className="h-20 w-px bg-black/20" /> */}
+                <StatItem label="Users" value={stats.userCount} />
+                {/* <div className="h-20 w-px bg-black/20" />
+                <StatItem label="Creators" value={stats.creatorCount} /> */}
             </div>
         </div>
     );

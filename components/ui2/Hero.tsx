@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../ui/logo";
+import UserBar from "./UserBar";
 import { motion } from "framer-motion";
 
 export default function Hero() {
@@ -70,8 +71,9 @@ export default function Hero() {
               ))}
             </motion.span>
           </h1>
-          <Link href="#waitlist" className="bg-black text-white font-bold px-8 py-3 text-xl rounded-full ">
-            BE FIRST
+          <UserBar />
+          <Link href="#waitlist" className="bg-black text-white font-bold px-8 py-3 text-xl rounded-full font-telegraf">
+            JOIN WAITLIST
           </Link>
         </div>
       </div>

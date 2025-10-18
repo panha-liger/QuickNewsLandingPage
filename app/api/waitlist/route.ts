@@ -5,7 +5,6 @@ export const runtime = "edge";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
-const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY as string;
 
 type Payload = {
   email: string;
@@ -80,15 +79,15 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
-  if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
     return NextResponse.json(
       { error: "server_misconfigured" },
       { status: 500 }
     );
   }
 
-  // Use SERVICE_ROLE_KEY to bypass RLS for reading stats
-  const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY, {
+  // Use ANON_KEY instead
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     global: { headers: { "x-quicknews": "waitlist" } },
   });
 
