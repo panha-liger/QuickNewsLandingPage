@@ -39,7 +39,7 @@ export default function Hero() {
 
 
         <div className="flex flex-col items-center gap-10">
-          <h1 className="lg:text-8xl text-6xl font-bold text-center ">
+          <h1 className="lg:text-8xl text-6xl font-bold text-center select-none">
             <motion.span
               initial="hidden"
               animate="visible"
@@ -50,7 +50,7 @@ export default function Hero() {
                 <motion.span
                   key={idx}
                   variants={wordVariants}
-                  className="inline-block lg:mx-4 mx-1"
+                  className="inline-block lg:mx-4 mx-1 "
                 >
                   {word + " "}
                 </motion.span>

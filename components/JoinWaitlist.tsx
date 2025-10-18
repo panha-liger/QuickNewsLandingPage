@@ -84,9 +84,9 @@ export default function JoinWaitlist() {
               />
               <div className="flex items-center gap-3">
                 <Smartphone className="w-5 h-5" />
-                <span className="font-telegraf font-bold text-base">CONSUMER FOR NOW</span>
+                <span className="font-telegraf font-bold text-base">USER FOR NOW</span>
               </div>
-              <p className={`text-lg font-telegraf ${role === 'user' ? 'text-white/80' : 'text-black/60'}`}>
+              <p className={`text-md font-telegraf ${role === 'user' ? 'text-white/80' : 'text-black/60'}`}>
                 Get AI-verified news from trusted creators
               </p>
             </label>
@@ -107,8 +107,8 @@ export default function JoinWaitlist() {
                 <DollarSign className="w-5 h-5" />
                 <span className="font-telegraf font-bold text-base">CONTENT CREATOR</span>
               </div>
-              <p className={`text-lg font-telegraf ${role === 'creator' ? 'text-white/80' : 'text-black/60'}`}>
-                Earn 10X more than TikTok creating news
+              <p className={`text-md font-telegraf ${role === 'creator' ? 'text-white/80' : 'text-black/60'}`}>
+                Earn 60x more than Tiktok creating real content
               </p>
             </label>
           </div>
