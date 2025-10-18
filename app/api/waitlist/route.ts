@@ -5,10 +5,11 @@ export const runtime = "edge";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
+const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY as string;
 
 type Payload = {
   email: string;
-  role?: 'user' | 'creator';
+  role?: "user" | "creator";
   source?: string;
   utm_source?: string;
   utm_medium?: string;
@@ -24,7 +25,10 @@ export async function POST(req: NextRequest) {
     }
 
     if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-      return NextResponse.json({ error: "server_misconfigured" }, { status: 500 });
+      return NextResponse.json(
+        { error: "server_misconfigured" },
+        { status: 500 }
+      );
     }
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
@@ -33,9 +37,9 @@ export async function POST(req: NextRequest) {
 
     // Check if user already exists
     const { data: existingUser } = await supabase
-      .from('waiting_users')
-      .select('id, role')
-      .eq('email', email)
+      .from("waiting_users")
+      .select("id, role")
+      .eq("email", email)
       .single();
 
     if (existingUser) {
@@ -44,10 +48,10 @@ export async function POST(req: NextRequest) {
 
     // Insert new user
     const { data, error } = await supabase
-      .from('waiting_users')
+      .from("waiting_users")
       .insert({
         email,
-        role: body.role || 'user',
+        role: body.role || "user",
         source: body.source || null,
         utm_source: body.utm_source || null,
         utm_medium: body.utm_medium || null,
@@ -57,7 +61,7 @@ export async function POST(req: NextRequest) {
       .single();
 
     if (error) {
-      console.error('Supabase error:', error);
+      console.error("Supabase error:", error);
       return NextResponse.json({ error: "insert_failed" }, { status: 500 });
     }
 
@@ -65,7 +69,7 @@ export async function POST(req: NextRequest) {
     try {
       await sendThankYouEmail(email, body.role);
     } catch (emailError) {
-      console.error('Email sending failed:', emailError);
+      console.error("Email sending failed:", emailError);
       // Don't fail the request if email fails, just log it
     }
 
@@ -75,23 +79,61 @@ export async function POST(req: NextRequest) {
   }
 }
 
+export async function GET() {
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
+    return NextResponse.json(
+      { error: "server_misconfigured" },
+      { status: 500 }
+    );
+  }
 
+  // Use SERVICE_ROLE_KEY to bypass RLS for reading stats
+  const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY, {
+    global: { headers: { "x-quicknews": "waitlist" } },
+  });
+
+  // Fetch all users
+  const { data: users, error } = await supabase
+    .from("waiting_users")
+    .select("id, role"); // Only need id and role for counting
+
+  if (error) {
+    console.error("Supabase GET error:", error);
+    return NextResponse.json({ error: "fetch_failed" }, { status: 500 });
+  }
+
+  // Calculate counts
+  const total = users ? users.length : 0;
+  const userCount = users ? users.filter((u) => u.role === "user").length : 0;
+  const creatorCount = users
+    ? users.filter((u) => u.role === "creator").length
+    : 0;
+
+  return NextResponse.json(
+    {
+      total,
+      userCount,
+      creatorCount,
+    },
+    { status: 200 }
+  );
+}
 
 async function sendThankYouEmail(email: string, role?: string) {
   console.log(`Attempting to send email to: ${email}`);
-  
+
   // Check if we have Resend API key
   const resendApiKey = process.env.RESEND_API_KEY;
-  
+
   if (!resendApiKey) {
-    console.log('No RESEND_API_KEY found, skipping email send');
-    return { success: false, reason: 'No API key configured' };
+    console.log("No RESEND_API_KEY found, skipping email send");
+    return { success: false, reason: "No API key configured" };
   }
 
   const emailData = {
-    from: 'QuickNews <noreply@quicknews.tech>',
+    from: "QuickNews <noreply@quicknews.tech>",
     to: [email],
-    subject: 'Welcome to QuickNews! 🎉',
+    subject: "Welcome to QuickNews! 🎉",
     html: `
       <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
         <div style="text-align: center; margin-bottom: 30px;">
@@ -140,29 +182,28 @@ async function sendThankYouEmail(email: string, role?: string) {
   };
 
   try {
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
       headers: {
-        'Authorization': `Bearer ${resendApiKey}`,
-        'Content-Type': 'application/json',
+        Authorization: `Bearer ${resendApiKey}`,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(emailData),
     });
 
     const result = await response.json();
-    
+
     if (!response.ok) {
-      console.error('Resend API error:', result);
-      throw new Error(`Resend API error: ${result.message || response.statusText}`);
+      console.error("Resend API error:", result);
+      throw new Error(
+        `Resend API error: ${result.message || response.statusText}`
+      );
     }
 
-    console.log('Email sent successfully:', result);
+    console.log("Email sent successfully:", result);
     return { success: true, result };
-    
   } catch (error) {
-    console.error('Email sending failed:', error);
+    console.error("Email sending failed:", error);
     throw error;
   }
 }
-
-

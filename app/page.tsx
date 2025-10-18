@@ -7,12 +7,14 @@ import FinalCTA from "@/components/FinalCTA";
 import AnimatedFooter from "@/components/AnimatedFooter";
 import Content from "@/components/ui2/Content";
 import Waitlist from "@/components/ui2/Waitlist";
+import Counter from "@/components/ui2/Counter";
 
 export default function Page() {
     return (
         <>
             {/* <Navbar /> */}
             <Hero />
+            <Counter />
             <Content />
             {/* <CreatorEconomy /> */}
             <Waitlist />
