@@ -24,7 +24,7 @@ export default function ContentSection({ text, src, order }: ContentSectionProps
             </div>
         ) : (
             <div className="flex items-center justify-between my-20 lg:flex-row flex-col-reverse">
-                <div className="relative group max-w-sm sm:max-w-md shadow-lg  rounded-[70px] hover:scale-[1.03] hover:-rotate-2  transition-all duration-500">
+                <div className="relative group max-w-sm sm:max-w-md  rounded-[70px] hover:scale-[1.03] hover:-rotate-2  transition-all duration-500">
                     <video
                         src={src}
                         autoPlay
