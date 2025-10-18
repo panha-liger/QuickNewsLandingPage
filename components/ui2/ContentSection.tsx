@@ -18,6 +18,7 @@ export default function ContentSection({ text, src, order }: ContentSectionProps
                         muted
                         loop
                         playsInline
+                        preload="metadata"
                         className="w-full h-full object-contain rounded-[70px]"
                     />
                 </div>
@@ -31,6 +32,7 @@ export default function ContentSection({ text, src, order }: ContentSectionProps
                         muted
                         loop
                         playsInline
+                        preload="metadata"
                         className="w-full h-full object-contain rounded-[70px]"
                     />
                 </div>
