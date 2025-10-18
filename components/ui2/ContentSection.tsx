@@ -11,27 +11,27 @@ export default function ContentSection({ text, src, order }: ContentSectionProps
                 <div className="text-center px-4 my-20 lg:my-0">
                     <p className="text-6xl font-bold ">{text}</p>
                 </div>
-                <div className="relative group max-w-sm sm:max-w-md px-4">
+                <div className="relative group max-w-sm sm:max-w-md  rounded-[70px] hover:scale-[1.03] hover:rotate-2  transition-all duration-500">
                     <video
                         src={src}
                         autoPlay
                         muted
                         loop
                         playsInline
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain rounded-[70px]"
                     />
                 </div>
             </div>
         ) : (
             <div className="flex items-center justify-between my-20 lg:flex-row flex-col-reverse">
-                <div className="relative group max-w-sm sm:max-w-md px-4">
+                <div className="relative group max-w-sm sm:max-w-md shadow-lg  rounded-[70px] hover:scale-[1.03] hover:-rotate-2  transition-all duration-500">
                     <video
                         src={src}
                         autoPlay
                         muted
                         loop
                         playsInline
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain rounded-[70px]"
                     />
                 </div>
                 <div className="text-center px-4 my-20 lg:my-0">
