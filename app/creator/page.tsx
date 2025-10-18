@@ -9,17 +9,17 @@ import Content from "@/components/ui2/Content";
 import Waitlist from "@/components/ui2/Waitlist";
 
 export default function Page() {
-    return (
-        <>
-            {/* <Navbar /> */}
-            <Hero />
-            <Content />
-            {/* <CreatorEconomy /> */}
-            <Waitlist />
-            <FAQ />
-            {/* <AnimatedFooter /> */}
-        </>
-    );
+  return (
+    <>
+      {/* <Navbar /> */}
+      <Hero />
+      <Content />
+      {/* <CreatorEconomy /> */}
+      <Waitlist />
+      {/* <FAQ /> */}
+      {/* <AnimatedFooter /> */}
+    </>
+  );
 }
 
 

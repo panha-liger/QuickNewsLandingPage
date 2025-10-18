@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/ui2/Hero";
 import AIVerification from "@/components/AIVerification";
 import CreatorEconomy from "@/components/CreatorEconomy";
-import FAQ from "@/components/FAQ";
+import FAQ from "@/components/ui2/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import AnimatedFooter from "@/components/AnimatedFooter";
 import Content from "@/components/ui2/Content";

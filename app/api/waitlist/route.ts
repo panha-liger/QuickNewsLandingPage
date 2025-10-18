@@ -75,6 +75,8 @@ export async function POST(req: NextRequest) {
   }
 }
 
+
+
 async function sendThankYouEmail(email: string, role?: string) {
   console.log(`Attempting to send email to: ${email}`);
   
