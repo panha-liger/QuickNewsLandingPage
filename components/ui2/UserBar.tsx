@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 
 export default function UserBar() {
@@ -62,13 +63,39 @@ export default function UserBar() {
 
     const percentage = Math.min((displayCount / goal) * 100, 100);
 
+    const dotVariants = {
+        animate: (i: number) => ({
+            y: [0, -10, 0],
+            transition: {
+                duration: 0.6,
+                repeat: Infinity,
+                delay: i * 0.15,
+                ease: "easeInOut" as const,
+            },
+        }),
+    };
+
     return (
         <div className="w-full max-w-xl mx-auto px-4">
-            <div className={`flex flex-col items-center gap-4 ${isLoading ? 'animate-pulse' : ''}`}>
+            <div className="flex flex-col items-center gap-4">
                 {/* Number Display */}
                 <div className="text-center">
                     <h2 className="text-5xl flex items-center font-bold text-black tabular-nums">
-                        {displayCount === 0 ? "—" : displayCount.toLocaleString()}
+                        {isLoading ? (
+                            <div className="flex gap-2 items-center">
+                                {[0, 1, 2].map((i) => (
+                                    <motion.span
+                                        key={i}
+                                        custom={i}
+                                        variants={dotVariants}
+                                        animate="animate"
+                                        className="w-3 h-3 bg-black rounded-full"
+                                    />
+                                ))}
+                            </div>
+                        ) : (
+                            displayCount.toLocaleString()
+                        )}
                         <span className="text-3xl ml-2 font-normal">Joined</span>
                     </h2>
                 </div>

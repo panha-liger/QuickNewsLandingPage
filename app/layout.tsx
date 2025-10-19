@@ -99,6 +99,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/images/logos/logo.png" />
+      </head>
       <body className={`${poppins.variable}`} suppressHydrationWarning>
         <Providers>{children}</Providers>
       </body>
