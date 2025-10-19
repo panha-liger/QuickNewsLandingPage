@@ -79,7 +79,7 @@ export default function UserBar() {
                         />
                     </div>
                     <div className="flex justify-between mt-2 text-sm font-telegraf font-bold text-black/60">
-                        <span>226</span>
+                        <span>0</span>
                         <span>{goal.toLocaleString()}</span>
                     </div>
                 </div>
