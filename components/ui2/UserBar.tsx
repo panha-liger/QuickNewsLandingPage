@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 export default function UserBar() {
     const [finalCount, setFinalCount] = useState<number | null>(null);
     const [displayCount, setDisplayCount] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
     const goal = 1000; // Goal of 1,000 users
 
     useEffect(() => {
@@ -16,13 +17,15 @@ export default function UserBar() {
                     const data = await response.json();
                     setFinalCount(226 + parseInt(data.userCount.toString()));
                 } else {
-                    // If API fails, just use 226
-                    setFinalCount(226);
+                    // If API fails, use 263
+                    setFinalCount(263);
                 }
             } catch (error) {
                 console.error('Failed to fetch stats:', error);
-                // If API fails, just use 226
-                setFinalCount(226);
+                // If API fails, use 263
+                setFinalCount(263);
+            } finally {
+                setIsLoading(false);
             }
         };
 
@@ -61,11 +64,11 @@ export default function UserBar() {
 
     return (
         <div className="w-full max-w-xl mx-auto px-4">
-            <div className="flex flex-col items-center gap-4">
+            <div className={`flex flex-col items-center gap-4 ${isLoading ? 'animate-pulse' : ''}`}>
                 {/* Number Display */}
                 <div className="text-center">
                     <h2 className="text-5xl flex items-center font-bold text-black tabular-nums">
-                        {displayCount.toLocaleString()}
+                        {displayCount === 0 ? "—" : displayCount.toLocaleString()}
                         <span className="text-3xl ml-2 font-normal">Joined</span>
                     </h2>
                 </div>
