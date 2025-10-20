@@ -20,7 +20,7 @@ export default function ContentSection({ text, src, poster, order }: ContentSect
             loop
             playsInline
             preload="metadata"
-            className="w-full h-full object-contain rounded-[55px]"
+            className="w-full h-full object-contain lg:rounded-[55px] rounded-[35px]"
         />
     );
 

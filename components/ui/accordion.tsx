@@ -30,7 +30,7 @@ export function Accordion({ items, className }: {
         return (
           <div key={it.value} className="border-black">
             <button
-              className="w-full text-left px-6 py-5  font-bold flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+              className="w-full text-left px-6 py-5  font-bold flex items-center justify-between  transition-colors duration-200"
               aria-expanded={open}
               onClick={() => toggle(it.value)}
             >
