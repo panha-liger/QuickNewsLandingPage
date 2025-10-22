@@ -20,9 +20,8 @@ export default function ContentSection({ text, src, poster, order }: ContentSect
             loop
             playsInline
             preload="auto"
-            controls={false}
             className="w-full h-full object-contain lg:rounded-[55px] rounded-[35px] pointer-events-none select-none"
-            onContextMenu={(e) => e.preventDefault()} 
+            onContextMenu={(e) => e.preventDefault()}
         />
 
     );
