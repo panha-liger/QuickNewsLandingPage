@@ -19,10 +19,12 @@ export default function ContentSection({ text, src, poster, order }: ContentSect
             muted
             loop
             playsInline
-            controls={false}
             preload="auto"
-            className="w-full h-full object-contain lg:rounded-[55px] rounded-[35px]"
+            controls={false}
+            className="w-full h-full object-contain lg:rounded-[55px] rounded-[35px] pointer-events-none select-none"
+            onContextMenu={(e) => e.preventDefault()} 
         />
+
     );
 
     return order === 1 ? (
@@ -30,13 +32,13 @@ export default function ContentSection({ text, src, poster, order }: ContentSect
             <div className="text-center px-4 my-20 lg:my-0">
                 <p className="text-6xl font-bold ">{text}</p>
             </div>
-            <div className="relative group max-w-sm sm:max-w-md rounded-[55px] hover:scale-[1.03] hover:rotate-2 transition-all duration-500 p-14">
+            <div className="relative group max-w-sm sm:max-w-md rounded-[55px] hover:scale-[1.03] lg:hover:rotate-2 hover:-rotate-0 transition-all duration-500 p-14">
                 <VideoElement />
             </div>
         </div>
     ) : (
         <div className="flex items-center justify-between my-20 lg:flex-row flex-col-reverse">
-            <div className="relative group max-w-sm sm:max-w-md rounded-[55px] hover:scale-[1.03] hover:-rotate-2 transition-all duration-500 p-14">
+            <div className="relative group max-w-sm sm:max-w-md rounded-[55px] hover:scale-[1.03] lg:hover:-rotate-2 hover:rotate-0 transition-all duration-500 p-14">
                 <VideoElement />
             </div>
             <div className="text-center px-4 my-20 lg:my-0">
