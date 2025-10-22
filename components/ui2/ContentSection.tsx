@@ -19,6 +19,7 @@ export default function ContentSection({ text, src, poster, order }: ContentSect
             muted
             loop
             playsInline
+            controls={false}
             preload="metadata"
             className="w-full h-full object-contain lg:rounded-[55px] rounded-[35px]"
         />
