@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 
 
 interface ContentSectionProps {
@@ -11,6 +12,19 @@ interface ContentSectionProps {
 
 export default function ContentSection({ text, src, poster, order }: ContentSectionProps) {
 
+    useEffect(() => {
+        const handler = () => {
+            document.querySelectorAll("video").forEach((v) => {
+                v.muted = true; // required for mobile autoplay
+                v.play().catch(() => { });
+            });
+            window.removeEventListener("touchstart", handler);
+        };
+
+        window.addEventListener("touchstart", handler, { once: true });
+        return () => window.removeEventListener("touchstart", handler);
+    }, []);
+
     const VideoElement = () => (
         <video
             src={src}
@@ -19,9 +33,11 @@ export default function ContentSection({ text, src, poster, order }: ContentSect
             muted
             loop
             playsInline
-            preload="auto"
-            className="w-full h-full object-contain lg:rounded-[55px] rounded-[35px] pointer-events-none select-none"
-            onContextMenu={(e) => e.preventDefault()}
+            preload="metadata"
+            tabIndex={-1} // prevents focus overlay
+            controls={false}
+            className="w-full h-full object-contain lg:rounded-[55px] rounded-[35px] "
+            onContextMenu={(e) => e.preventDefault()} // disables right-click menu
         />
 
     );
@@ -31,13 +47,13 @@ export default function ContentSection({ text, src, poster, order }: ContentSect
             <div className="text-center px-4 my-20 lg:my-0">
                 <p className="text-6xl font-bold ">{text}</p>
             </div>
-            <div className="relative group max-w-sm sm:max-w-md rounded-[55px] hover:scale-[1.03] lg:hover:rotate-2 hover:-rotate-0 transition-all duration-500 p-14">
+            <div className="relative group max-w-sm sm:max-w-md rounded-[55px] lg:hover:scale-[1.03] hover:scale-[1.01] lg:hover:rotate-2 hover:-rotate-0 transition-all duration-500 p-14">
                 <VideoElement />
             </div>
         </div>
     ) : (
         <div className="flex items-center justify-between my-20 lg:flex-row flex-col-reverse">
-            <div className="relative group max-w-sm sm:max-w-md rounded-[55px] hover:scale-[1.03] lg:hover:-rotate-2 hover:rotate-0 transition-all duration-500 p-14">
+            <div className="relative group max-w-sm sm:max-w-md rounded-[55px] lg:hover:scale-[1.03] hover:scale-[1.01] lg:hover:-rotate-2 hover:rotate-0 transition-all duration-500 p-14">
                 <VideoElement />
             </div>
             <div className="text-center px-4 my-20 lg:my-0">
