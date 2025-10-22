@@ -30,7 +30,7 @@ export default function Hero() {
     },
   };
   return (
-    <section className="relative  flex flex-col  items-center pt-20 px-4 justify-end  bg-white" id="product">
+    <section className="relative  flex flex-col  items-center lg:pt-20 pt-10 px-4 justify-end  bg-white" id="product">
       <Image src="/images/hero-graphic.png" alt="Hero Graphic" className="absolute z-0 max-w-[1000px] -bottom-16 w-full h-[81%]  object-contain"
         width={1000}
         height={1000}
