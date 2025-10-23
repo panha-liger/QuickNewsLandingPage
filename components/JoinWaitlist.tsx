@@ -51,28 +51,28 @@ export default function JoinWaitlist() {
     if (!email) return;
     setStatus("loading");
     try {
-      setShowConfetti(true);
-      setTimeout(() => {
-        setShowConfetti(false);
-      }, 5000);
-      setStatus("ok");
-      // const res = await fetch("/api/waitlist", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ email, role, ...utms }),
-      // });
-      // const data = await res.json();
-      // if (data.status === "existing") setStatus("existing");
-      // else if (data.status === "ok") {
-      //   setStatus("ok");
-      //   setShowConfetti(true);
-      //   setEmail(""); // Clear form
+      // setShowConfetti(true);
+      // setTimeout(() => {
+      //   setShowConfetti(false);
+      // }, 5000);
+      // setStatus("ok");
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, role, ...utms }),
+      });
+      const data = await res.json();
+      if (data.status === "existing") setStatus("existing");
+      else if (data.status === "ok") {
+        setStatus("ok");
+        setShowConfetti(true);
+        setEmail(""); // Clear form
 
-      //   // Stop confetti after 5 seconds
-      //   setTimeout(() => {
-      //     setShowConfetti(false);
-      //   }, 5000);
-      // } else setStatus("ok");
+        // Stop confetti after 5 seconds
+        setTimeout(() => {
+          setShowConfetti(false);
+        }, 5000);
+      } else setStatus("ok");
     } catch {
       setStatus("error");
     }
