@@ -4,10 +4,16 @@ import Image from "next/image";
 import Logo from "../ui/logo";
 import UserBar from "./UserBar";
 import { motion } from "framer-motion";
+import { Heart } from "lucide-react";
 
 export default function Hero() {
-  const headline1 = ["Verified ", "News. "];
-  const headline2 = ["Verified ", "Creators. "];
+  const headline1 = [
+    "News", "you", "can", "trust",
+
+  ];
+  const headline2 = [
+    "and", "content", "you’ll", "love",
+  ];
   const containerVariants = {
     hidden: {},
     visible: {
@@ -30,8 +36,8 @@ export default function Hero() {
     },
   };
   return (
-    <section className="relative  flex flex-col  items-center lg:pt-20 pt-10 px-4 justify-end  bg-white" id="product">
-      <Image src="/images/hero-graphic.png" alt="Hero Graphic" className="absolute z-0 max-w-[1000px] -bottom-16 w-full h-[81%]  object-contain"
+    <section className="relative  flex flex-col  items-center lg:pt-32 pt-44 px-4 justify-end  bg-white" id="product">
+      <Image src="/images/hero-graphic-2.png" alt="Hero Graphic" className="absolute z-0 max-w-[1000px] -bottom-16 w-full h-[81%]  object-contain"
         width={1000}
         height={1000}
       />
@@ -64,15 +70,17 @@ export default function Hero() {
                   className="inline-block lg:mx-4 mx-1"
                 >
                   {word}
-                  {idx === 0 && <span>{" "}</span>}
-                  {idx === 1 && <br />}
-                  {idx === 2 && <span>{" "}</span>}
+                  {/* {idx === 0 && <span>{" "}</span>}
+                  {idx === 4 && <br />}
+                  {idx === 6 && <span>{" "}</span>} */}
+                  {idx === headline2.length - 1 && <Heart className="w-14 h-14 lg:w-20 lg:h-20 text-red-500 fill-red-500 inline-block ml-2 mb-2" />}
                 </motion.span>
               ))}
+              
             </motion.span>
           </h1>
           <UserBar />
-          <Link href="#waitlist" className="bg-black text-white font-bold px-8 py-3 text-xl rounded-full font-telegraf">
+          <Link href="#waitlist" className="bg-black text-white font-bold px-8 py-3 text-xl rounded-full">
             JOIN WAITLIST
           </Link>
         </div>
