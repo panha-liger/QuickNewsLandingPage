@@ -42,7 +42,7 @@ export default function Header() {
                     <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2 w-full sm:w-auto  sm:justify-end">
                         <NavLink href="/creators">Content Creator</NavLink>
                         <NavLink href="/advertisers">Advertiser</NavLink>
-                        <NavLink href="/about">What is Quicknews?</NavLink>
+                        <NavLink href="#faq">What is Quicknews?</NavLink>
                         <NavLink href="#waitlist" isButton>Win $100</NavLink>
                     </div>
                 </div>
