@@ -96,7 +96,7 @@ export default function UserBar() {
                         ) : (
                             displayCount.toLocaleString()
                         )}
-                        <span className="text-3xl ml-2 font-normal">Joined</span>
+                        <span className="text-3xl ml-2 ">Joined</span>
                     </h2>
                 </div>
 
@@ -108,9 +108,9 @@ export default function UserBar() {
                             style={{ width: `${percentage}%` }}
                         />
                     </div>
-                    <div className="flex justify-between mt-2 text-sm font-telegraf font-bold text-black/60">
-                        <span>0</span>
-                        <span>{goal.toLocaleString()}</span>
+                    <div className="flex justify-between mt-2   font-bold">
+                        <span className='text-xl '>0</span>
+                        <span className='font-bold text-xl'>{goal.toLocaleString()}</span>
                     </div>
                 </div>
             </div>
