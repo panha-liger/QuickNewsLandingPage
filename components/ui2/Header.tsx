@@ -16,7 +16,7 @@ const NavLink = ({ href, children, isButton = false }: { href: string; children:
     return (
         <Link
             href={href}
-            className="relative inline-flex h-10 px-4 py-2 text-lg font-bold font-telegraf transition-colors group"
+            className="relative inline-flex h-10 px-4 py-2 text-lg font-bold  transition-colors group"
         >
             <span className="relative">
                 {children}
