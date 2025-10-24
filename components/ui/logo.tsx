@@ -18,13 +18,13 @@ export default function Logo({ isVertical = true, size = 'lg' }: LogoProps) {
             gap: "gap-1"
         },
         md: {
-            image: "w-16 h-16 lg:w-20 lg:h-20",
+            image: "w-8 h-8 lg:w-6 lg:h-6",
             text: "text-2xl lg:text-3xl",
             gap: "gap-1.5"
         },
         lg: {
-            image: "w-20 h-20 lg:w-28 lg:h-28",
-            text: "text-3xl lg:text-5xl",
+            image: "w-14 h-14 lg:w-20 lg:h-20",
+            text: "text-4xl lg:text-6xl",
             gap: "gap-2"
         }
     };
@@ -36,9 +36,9 @@ export default function Logo({ isVertical = true, size = 'lg' }: LogoProps) {
             <Image
                 src="/images/logos/logo.png"
                 alt="QuickNews Logo"
-                width={180}
-                height={180}
-                className={`${currentSize.image} object-contain`}
+                className={`${currentSize.image} object-contain`}   
+                width={50}
+                height={50}
             />
             <p className={`${currentSize.text} font-bold`}>Quicknews</p>
         </div>

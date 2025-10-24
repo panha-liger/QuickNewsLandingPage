@@ -7,12 +7,9 @@ import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
 
 export default function Hero() {
-  const headline1 = [
-    "News", "you", "can", "trust",
+  const headline = [
+    "News", "you", "can", "trust", "and", "content", "you’ll", "love"
 
-  ];
-  const headline2 = [
-    "and", "content", "you’ll", "love",
   ];
   const containerVariants = {
     hidden: {},
@@ -41,42 +38,29 @@ export default function Hero() {
         width={1000}
         height={1000}
       />
-      <div className="relative z-10 flex flex-col items-center gap-20">
+      <div className="relative z-10 flex flex-col items-center gap-10">
         <Logo />
 
 
         <div className="flex flex-col items-center gap-10">
-          <h1 className="lg:text-8xl text-6xl font-bold text-center select-none">
+          <h1 className="lg:text-8xl text-6xl max-w-5xl font-bold text-center select-none">
             <motion.span
               initial="hidden"
               animate="visible"
               variants={containerVariants}
               className="inline-block"
             >
-              {headline1.map((word, idx) => (
+              {headline.map((word, idx) => (
                 <motion.span
                   key={idx}
                   variants={wordVariants}
-                  className="inline-block lg:mx-4 mx-1 "
+                  className="inline-block lg:mx-4 mx-1 tracking-tighter"
                 >
                   {word + " "}
+                  {idx === headline.length - 1 && <Heart className="w-14 h-14 lg:w-20 lg:h-20 text-red-500 fill-red-500 inline-block ml-2 mb-2" />}
                 </motion.span>
               ))}
               <br></br>
-              {headline2.map((word, idx) => (
-                <motion.span
-                  key={idx}
-                  variants={wordVariants}
-                  className="inline-block lg:mx-4 mx-1"
-                >
-                  {word}
-                  {/* {idx === 0 && <span>{" "}</span>}
-                  {idx === 4 && <br />}
-                  {idx === 6 && <span>{" "}</span>} */}
-                  {idx === headline2.length - 1 && <Heart className="w-14 h-14 lg:w-20 lg:h-20 text-red-500 fill-red-500 inline-block ml-2 mb-2" />}
-                </motion.span>
-              ))}
-              
             </motion.span>
           </h1>
           <UserBar />
