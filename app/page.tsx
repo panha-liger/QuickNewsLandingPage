@@ -13,15 +13,10 @@ import Header from "@/components/ui2/Header";
 export default function Page() {
     return (
         <>
-            <Header/>
-            {/* <Navbar /> */}
             <Hero />
-            {/* <Counter /> */}
             <Content />
-            {/* <CreatorEconomy /> */}
             <Waitlist />
             <FAQ />
-            {/* <AnimatedFooter /> */}
         </>
     );
 }

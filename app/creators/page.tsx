@@ -1,23 +1,9 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/ui2/Hero";
-import AIVerification from "@/components/AIVerification";
-import CreatorEconomy from "@/components/CreatorEconomy";
-import FAQ from "@/components/ui2/FAQ";
-import FinalCTA from "@/components/FinalCTA";
-import AnimatedFooter from "@/components/AnimatedFooter";
-import Content from "@/components/ui2/Content";
-import Waitlist from "@/components/ui2/Waitlist";
+import CreatorsHero from "@/components/ui2/CreatorsHero";
 
 export default function Page() {
   return (
     <>
-      {/* <Navbar /> */}
-      <Hero />
-      <Content />
-      {/* <CreatorEconomy /> */}
-      <Waitlist />
-      {/* <FAQ /> */}
-      {/* <AnimatedFooter /> */}
+      <CreatorsHero />
     </>
   );
 }

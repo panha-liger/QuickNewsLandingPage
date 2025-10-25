@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Smartphone, DollarSign, Check, Info, AlertCircle, CheckCircle } from "lucide-react";
+import { Smartphone, DollarSign, Info, AlertCircle, CheckCircle } from "lucide-react";
 import Confetti from "react-confetti";
 // import SuccessModal from "./SuccessModal";
 
@@ -33,6 +33,17 @@ export default function JoinWaitlist() {
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Check for role query parameter and auto-select
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const roleParam = params.get("role");
+      if (roleParam === "creator") {
+        setRole("creator");
+      }
+    }
   }, []);
 
   const utms = useMemo(() => {

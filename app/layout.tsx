@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
+import Header from "@/components/ui2/Header";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -103,6 +104,7 @@ export default function RootLayout({
         <link rel="icon" href="/icon-512.png" />
       </head>
       <body className={`${poppins.variable}`} suppressHydrationWarning>
+        <Header />
         <Providers>{children}</Providers>
       </body>
     </html>
