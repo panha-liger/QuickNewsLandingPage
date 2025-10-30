@@ -9,6 +9,7 @@ import Content from "@/components/ui2/Content";
 import Waitlist from "@/components/ui2/Waitlist";
 import Counter from "@/components/ui2/Counter";
 import Header from "@/components/ui2/Header";
+import Contact from "@/components/ui2/Contact";
 
 export default function Page() {
     return (
@@ -17,6 +18,7 @@ export default function Page() {
             <Content />
             <Waitlist />
             <FAQ />
+            <Contact/>
         </>
     );
 }
