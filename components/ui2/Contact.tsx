@@ -27,15 +27,13 @@ export default function Contact() {
                                 <p className="text-gray-600">Founder & CEO of Quicknews</p>
                             </div>
 
-                            <div className="space-y-4">
+                            <div className="space-y-2">
                                 <a
                                     href="tel:+85592345272"
                                     className="group flex items-center gap-4 justify-center lg:justify-start"
                                 >
-                                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-800">
-                                        {/* Phone icon */}
-                                        <Phone className="h-5 w-5" />
-                                    </span>
+                                    {/* Phone icon */}
+                                    <Phone className="h-5 w-5" />
                                     <div className="flex flex-col">
                                         <span className="text-lg text-black">+855 92 345 272</span>
                                     </div>
@@ -45,10 +43,8 @@ export default function Contact() {
                                     href="mailto:sunratanak@quicknews.tech"
                                     className="group flex items-center gap-4 justify-center lg:justify-start"
                                 >
-                                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-800">
-                                        {/* Mail icon */}
-                                        <Mail className="h-5 w-5" />
-                                    </span>
+                                    {/* Mail icon */}
+                                    <Mail className="h-5 w-5" />
                                     <div className="flex flex-col">
                                         <span className="text-lg text-black">sunratanak@quicknews.tech</span>
                                     </div>
