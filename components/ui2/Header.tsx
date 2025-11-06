@@ -40,9 +40,9 @@ export default function Header() {
 
                     {/* Nav items - wrap on small screens */}
                     <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2 w-full sm:w-auto">
-                        <NavLink href="/" hiddenOnMobile>What is Quicknews?</NavLink>
-                        <NavLink href="/creators" >I&apos;m a Content Creator</NavLink>
-                        <NavLink href="/advertisers" >I&apos;m an Advertiser</NavLink>
+                        <NavLink href="/">What is Quicknews?</NavLink>
+                        <NavLink href="/creators">I&apos;m a Content Creator</NavLink>
+                        <NavLink href="/advertisers">I&apos;m an Advertiser</NavLink>
                         <NavLink href="#waitlist" isButton hiddenOnMobile>Win $100</NavLink>
                     </div>
                 </div>
