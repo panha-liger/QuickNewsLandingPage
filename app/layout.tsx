@@ -13,7 +13,8 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "QuickNews - AI-Verified Short-Form News",
-  description: "Get quick, AI-verified news from trusted creators. Earn 10X more than TikTok by sharing real news.",
+  description:
+    "Get quick, AI-verified news from trusted creators. Earn 10X more than TikTok by sharing real news.",
   keywords: ["news", "AI", "verified", "creators", "short-form", "QuickNews"],
   authors: [{ name: "QuickNews Team" }],
   creator: "QuickNews",
@@ -29,15 +30,17 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "QuickNews - AI-Verified Short-Form News",
-    description: "Get quick, AI-verified news from trusted creators. Earn 10X more than TikTok by sharing real news.",
+    description:
+      "Get quick, AI-verified news from trusted creators. Earn 10X more than TikTok by sharing real news.",
     url: "https://quicknews.tech",
     siteName: "QuickNews",
     images: [
       {
-        url: "/favicon.ico",
+        // ✅ absolute URL + version to bust cache
+        url: "https://quicknews.tech/logo.png?v=3",
         width: 1200,
         height: 630,
-        alt: "QuickNews Logo",
+        alt: "QuickNews Thumbnail",
       },
     ],
     locale: "en_US",
@@ -46,8 +49,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "QuickNews - AI-Verified Short-Form News",
-    description: "Get quick, AI-verified news from trusted creators. Earn 10X more than TikTok by sharing real news.",
-    images: ["/favicon.ico"],
+    description:
+      "Get quick, AI-verified news from trusted creators. Earn 10X more than TikTok by sharing real news.",
+    // ✅ absolute URL + same cache version
+    images: ["https://quicknews.tech/logo.png?v=3"],
   },
   robots: {
     index: true,
@@ -62,24 +67,24 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico?v=2", sizes: "any" },
-      { url: "/favicon.ico?v=2", type: "image/png" },
+      { url: "/favicon.ico?v=3", sizes: "any" },
+      { url: "/favicon.ico?v=3", type: "image/png" },
     ],
     apple: [
-      { url: "/favicon.ico?v=2", sizes: "180x180", type: "image/png" },
+      { url: "/favicon.ico?v=3", sizes: "180x180", type: "image/png" },
     ],
     other: [
       {
         rel: "icon",
         type: "image/png",
         sizes: "192x192",
-        url: "/favicon.ico?v=2",
+        url: "/favicon.ico?v=3",
       },
       {
         rel: "icon",
         type: "image/png",
         sizes: "512x512",
-        url: "/favicon.ico?v=2",
+        url: "/favicon.ico?v=3",
       },
     ],
   },
@@ -92,6 +97,7 @@ export const metadata: Metadata = {
     maximumScale: 1,
   },
 };
+
 
 export default function RootLayout({
   children,
