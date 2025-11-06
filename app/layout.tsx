@@ -101,6 +101,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta property="og:image" content="https://quicknews.tech/logo.png" />
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={`${poppins.variable}`} suppressHydrationWarning>
