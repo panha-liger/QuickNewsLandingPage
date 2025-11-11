@@ -31,6 +31,7 @@ Value: cname.vercel-dns.com
 TTL: 3600
 ```
 
+
 #### **Step 3: Add DNS Records in Your Domain Provider**
 1. Go to your domain provider's dashboard (wherever you bought the domain)
 2. Find **"DNS Management"** or **"DNS Settings"**
