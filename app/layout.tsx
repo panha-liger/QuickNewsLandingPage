@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "QuickNews - AI-Verified Short-Form News",
     description:
-      "Get quick, AI-verified news from trusted creators. Earn 10X more than TikTok by sharing real news.",
+      "Get quick, AI-verified news from trusted creators. Earn 60X more than TikTok by sharing real news.",
     url: "https://quicknews.tech",
     siteName: "QuickNews",
     images: [

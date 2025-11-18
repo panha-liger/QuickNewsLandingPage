@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function CreatorsHero() {
     const headline = [
-        "Earn", "$1.2", "Per", "1000", "Views", "as", "a", "Creator!"
+        "Earn", "$120", "Per", "100,000", "Views", "as", "a", "Creator!"
     ];
     const subtitle = [
         "Post", "original", "content", "and", "earn", "more!"
