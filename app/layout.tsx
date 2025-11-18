@@ -14,7 +14,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "QuickNews - AI-Verified Short-Form News",
   description:
-    "Get quick, AI-verified news from trusted creators. Earn 10X more than TikTok by sharing real news.",
+    "Get quick, AI-verified news from trusted creators. Earn 60X more than TikTok by sharing real news.",
   keywords: ["news", "AI", "verified", "creators", "short-form", "QuickNews"],
   authors: [{ name: "QuickNews Team" }],
   creator: "QuickNews",
