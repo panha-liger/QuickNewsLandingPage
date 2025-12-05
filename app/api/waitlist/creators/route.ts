@@ -21,7 +21,7 @@ export const GET = async () => {
 
     // Fetch all creators
     const { data, error, count } = await supabase
-      .from("waiting_users")
+      .from("users")
       .select("*", { count: "exact" })
       .eq("role", "creator")
       .order("created_at", { ascending: false });

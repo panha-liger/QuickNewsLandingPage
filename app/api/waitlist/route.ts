@@ -5,6 +5,7 @@ export const runtime = "edge";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
+const WAITLIST_TABLE = process.env.NEXT_PUBLIC_WAITLIST_TABLE || "users";
 
 type Payload = {
   username: string;
@@ -42,7 +43,7 @@ export async function POST(req: NextRequest) {
 
     // Check if user already exists
     const { data: existingByUsername } = await supabase
-      .from("waiting_users")
+      .from(WAITLIST_TABLE)
       .select("id, role")
       .eq("username", username)
       .maybeSingle();
@@ -52,7 +53,7 @@ export async function POST(req: NextRequest) {
     }
 
     const { data: existingByEmail } = await supabase
-      .from("waiting_users")
+      .from(WAITLIST_TABLE)
       .select("id, role")
       .eq("email", username)
       .maybeSingle();
@@ -63,7 +64,7 @@ export async function POST(req: NextRequest) {
 
     // Insert new user
     const { data, error } = await supabase
-      .from("waiting_users")
+      .from(WAITLIST_TABLE)
       .insert({
         email: username,
         username,
@@ -112,7 +113,7 @@ export async function GET() {
 
   // Fetch all users
   const { data: users, error } = await supabase
-    .from("waiting_users")
+    .from(WAITLIST_TABLE)
     .select("id, role"); // Only need id and role for counting
 
   if (error) {

@@ -21,7 +21,7 @@ export const GET = async () => {
 
     // Fetch all users (consumers)
     const { data, error, count } = await supabase
-      .from("waiting_users")
+      .from("users")
       .select("*", { count: "exact" })
       .eq("role", "user")
       .order("created_at", { ascending: false });
