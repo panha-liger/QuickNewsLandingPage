@@ -3,6 +3,11 @@ import { createClient } from "@supabase/supabase-js";
 
 export const runtime = "edge";
 
+// Generate UUID v4 for edge runtime
+function generateUUID(): string {
+  return crypto.randomUUID();
+}
+
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
 
@@ -61,28 +66,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ status: "existing" }, { status: 200 });
     }
 
-    // Insert new user
-    const { data, error } = await supabase
-      .from("users")
-      .insert({
-        email: username,
-        username,
-        full_name: fullName,
-      })
-      .select()
-      .single();
-
-    if (error) {
-      console.error("Supabase error:", error);
-      return NextResponse.json(
-        { error: "insert_failed" + error.message },
-        { status: 500 }
-      );
-    }
-
-    // Also insert into waiting_users table with role and email
+    // Insert into waiting_users table first (this is the primary waitlist table)
     const role = body.role || "user";
-    const { error: waitingUsersError } = await supabase
+    const { error: waitingUsersError, data: waitingUserData } = await supabase
       .from("waiting_users")
       .insert({
         email: username,
@@ -91,11 +77,45 @@ export async function POST(req: NextRequest) {
         utm_source: body.utm_source || null,
         utm_medium: body.utm_medium || null,
         utm_campaign: body.utm_campaign || null,
-      });
+      })
+      .select()
+      .single();
 
     if (waitingUsersError) {
       console.error("Waiting users insert error:", waitingUsersError);
-      // Don't fail the request if waiting_users insert fails, just log it
+      return NextResponse.json(
+        { error: "insert_failed: "  },
+        { status: 500 }
+      );
+    }
+
+    // Also try to insert into users table (keep existing functionality)
+    // If this fails, we still return success since waiting_users insert worked
+    const insertData: {
+      id: string;
+      email: string;
+      username: string;
+      full_name?: string | null;
+    } = {
+      id: generateUUID(),
+      email: username,
+      username,
+    };
+
+    if (fullName) {
+      insertData.full_name = fullName;
+    }
+
+    const { data, error } = await supabase
+      .from("users")
+      .insert(insertData)
+      .select("*")
+      .single();
+
+    if (error) {
+      console.error("Users table insert error (non-blocking):", error);
+      // Don't fail the request if users insert fails, just log it
+      // The waiting_users insert succeeded, so we continue
     }
 
     if (emailForNotification) {
@@ -107,7 +127,16 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    return NextResponse.json({ status: "ok", data }, { status: 200 });
+    // Return success with waiting_users data (primary waitlist table)
+    // Include users data if that insert also succeeded
+    return NextResponse.json(
+      {
+        status: "ok",
+        data: data || waitingUserData,
+        usersInsertSucceeded: !!data,
+      },
+      { status: 200 }
+    );
   } catch {
     return NextResponse.json({ error: "bad_request" }, { status: 400 });
   }
@@ -230,7 +259,7 @@ async function sendThankYouEmail(email: string) {
     if (!response.ok) {
       console.error("Resend API error:", result);
       throw new Error(
-        `Resend API error: ${result.message || response.statusText}`
+        `Resend API error: ${result || response.statusText}`
       );
     }
 
