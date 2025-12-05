@@ -68,10 +68,6 @@ export async function POST(req: NextRequest) {
         email: username,
         username,
         full_name: fullName,
-        source: body.source || null,
-        utm_source: body.utm_source || null,
-        utm_medium: body.utm_medium || null,
-        utm_campaign: body.utm_campaign || null,
       })
       .select()
       .single();
