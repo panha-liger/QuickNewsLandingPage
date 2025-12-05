@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
     // Check if user already exists
     const { data: existingByUsername } = await supabase
       .from("users")
-      .select("id, role")
+      .select("id")
       .eq("username", username)
       .maybeSingle();
 
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
     }
 
     const { data: existingByEmail } = await supabase
-      .from("users")
+      .from("waiting_users")
       .select("id, role")
       .eq("email", username)
       .maybeSingle();
@@ -68,7 +68,6 @@ export async function POST(req: NextRequest) {
         email: username,
         username,
         full_name: fullName,
-        role: body.role || "user",
         source: body.source || null,
         utm_source: body.utm_source || null,
         utm_medium: body.utm_medium || null,
@@ -83,6 +82,24 @@ export async function POST(req: NextRequest) {
         { error: "insert_failed" + error.message },
         { status: 500 }
       );
+    }
+
+    // Also insert into waiting_users table with role and email
+    const role = body.role || "user";
+    const { error: waitingUsersError } = await supabase
+      .from("waiting_users")
+      .insert({
+        email: username,
+        role: role,
+        source: body.source || null,
+        utm_source: body.utm_source || null,
+        utm_medium: body.utm_medium || null,
+        utm_campaign: body.utm_campaign || null,
+      });
+
+    if (waitingUsersError) {
+      console.error("Waiting users insert error:", waitingUsersError);
+      // Don't fail the request if waiting_users insert fails, just log it
     }
 
     if (emailForNotification) {
