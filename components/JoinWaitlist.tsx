@@ -9,7 +9,8 @@ import Confetti from "react-confetti";
 type Status = "idle" | "loading" | "ok" | "existing" | "error";
 
 export default function JoinWaitlist() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [fullName, setFullName] = useState("");
   const [role, setRole] = useState<'user' | 'creator'>('user');
   const [status, setStatus] = useState<Status>("idle");
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
@@ -59,7 +60,9 @@ export default function JoinWaitlist() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    const trimmedUsername = username.trim();
+    const trimmedFullName = fullName.trim();
+    if (!trimmedUsername || !trimmedFullName) return;
     setStatus("loading");
     try {
       // setShowConfetti(true);
@@ -70,14 +73,20 @@ export default function JoinWaitlist() {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, role, ...utms }),
+        body: JSON.stringify({
+          username: trimmedUsername,
+          full_name: trimmedFullName,
+          role,
+          ...utms,
+        }),
       });
       const data = await res.json();
       if (data.status === "existing") setStatus("existing");
       else if (data.status === "ok") {
         setStatus("ok");
         setShowConfetti(true);
-        setEmail(""); // Clear form
+        setUsername("");
+        setFullName("");
 
         // Stop confetti after 5 seconds
         setTimeout(() => {
@@ -107,16 +116,27 @@ export default function JoinWaitlist() {
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6">
         <form onSubmit={onSubmit} className="space-y-8">
           {/* Email Input */}
-          <div className="space-y-2">
+          <div className="space-y-6">
             <label className="block text-sm font-telegraf font-bold text-black uppercase tracking-wide">
-              Email
+              Telegram Phone Number or Username
             </label>
             <input
-              type="email"
+              type="text"
               required
-              placeholder="you@news.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              placeholder="01234567890 or @telegramuser"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full h-12 rounded-full border-2 border-black bg-white px-6 text-base font-telegraf outline-none focus:ring-2 focus:ring-black transition-all"
+            />
+            <label className="block text-sm font-telegraf font-bold text-black uppercase tracking-wide">
+              Full Name
+            </label>
+            <input
+              type="text"
+              required
+              placeholder="John Doe"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
               className="w-full h-12 rounded-full border-2 border-black bg-white px-6 text-base font-telegraf outline-none focus:ring-2 focus:ring-black transition-all"
             />
           </div>

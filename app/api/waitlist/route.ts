@@ -7,7 +7,8 @@ const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
 
 type Payload = {
-  email: string;
+  username: string;
+  full_name?: string;
   role?: "user" | "creator";
   source?: string;
   utm_source?: string;
@@ -18,10 +19,15 @@ type Payload = {
 export async function POST(req: NextRequest) {
   try {
     const body = (await req.json()) as Partial<Payload>;
-    const email = (body.email || "").toString().trim().toLowerCase();
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return NextResponse.json({ error: "invalid_email" }, { status: 400 });
+    const username = (body.username || "").toString().trim();
+    if (!username) {
+      return NextResponse.json({ error: "invalid_username" }, { status: 400 });
     }
+
+    const fullName = body.full_name?.toString().trim() || null;
+    const emailForNotification = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(username)
+      ? username.toLowerCase()
+      : null;
 
     if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
       return NextResponse.json(
@@ -35,13 +41,23 @@ export async function POST(req: NextRequest) {
     });
 
     // Check if user already exists
-    const { data: existingUser } = await supabase
+    const { data: existingByUsername } = await supabase
       .from("waiting_users")
       .select("id, role")
-      .eq("email", email)
-      .single();
+      .eq("username", username)
+      .maybeSingle();
 
-    if (existingUser) {
+    if (existingByUsername) {
+      return NextResponse.json({ status: "existing" }, { status: 200 });
+    }
+
+    const { data: existingByEmail } = await supabase
+      .from("waiting_users")
+      .select("id, role")
+      .eq("email", username)
+      .maybeSingle();
+
+    if (existingByEmail) {
       return NextResponse.json({ status: "existing" }, { status: 200 });
     }
 
@@ -49,7 +65,9 @@ export async function POST(req: NextRequest) {
     const { data, error } = await supabase
       .from("waiting_users")
       .insert({
-        email,
+        email: username,
+        username,
+        full_name: fullName,
         role: body.role || "user",
         source: body.source || null,
         utm_source: body.utm_source || null,
@@ -64,12 +82,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "insert_failed" }, { status: 500 });
     }
 
-    // Send thank you email
-    try {
-      await sendThankYouEmail(email, body.role);
-    } catch (emailError) {
-      console.error("Email sending failed:", emailError);
-      // Don't fail the request if email fails, just log it
+    if (emailForNotification) {
+      try {
+        await sendThankYouEmail(emailForNotification);
+      } catch (emailError) {
+        console.error("Email sending failed:", emailError);
+        // Don't fail the request if email fails, just log it
+      }
     }
 
     return NextResponse.json({ status: "ok", data }, { status: 200 });
@@ -118,7 +137,7 @@ export async function GET() {
   );
 }
 
-async function sendThankYouEmail(email: string, role?: string) {
+async function sendThankYouEmail(email: string) {
   console.log(`Attempting to send email to: ${email}`);
 
   // Check if we have Resend API key
