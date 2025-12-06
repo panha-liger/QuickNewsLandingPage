@@ -160,7 +160,7 @@ export async function GET() {
   if (error) {
     console.error("Supabase GET error:", error);
     return NextResponse.json(
-      { error: "fetch_failed" + error.message },
+      { error: "fetch_failed" },
       { status: 500 }
     );
   }
