@@ -157,7 +157,7 @@ export async function GET() {
 
   // Fetch all users
   const { data: users, error } = await supabase
-    .from("users")
+    .from("waiting_users")
     .select("id, role"); // Only need id and role for counting
 
   if (error) {
