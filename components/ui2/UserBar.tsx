@@ -16,7 +16,7 @@ export default function UserBar() {
                 const response = await fetch('/api/waitlist');
                 if (response.ok) {
                     const data = await response.json();
-                    setFinalCount(226 + parseInt(data.userCount.toString()));
+                    setFinalCount(226 + parseInt(data.total.toString()));
                 } else {
                     // If API fails, use 263
                     setFinalCount(263);

@@ -83,10 +83,7 @@ export async function POST(req: NextRequest) {
 
     if (waitingUsersError) {
       console.error("Waiting users insert error:", waitingUsersError);
-      return NextResponse.json(
-        { error: "insert_failed: "  },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "insert_failed: " }, { status: 500 });
     }
 
     // Also try to insert into users table (keep existing functionality)
@@ -158,25 +155,19 @@ export async function GET() {
   // Fetch all users
   const { data: users, error } = await supabase
     .from("waiting_users")
-    .select("id, role"); // Only need id and role for counting
+    .select("id"); // Only need id and role for counting
 
   if (error) {
     console.error("Supabase GET error:", error);
-    return NextResponse.json({ error: "fetch_failed" }, { status: 500 });
+    return NextResponse.json({ error: "fetch_failed" + error.message }, { status: 500 });
   }
 
   // Calculate counts
   const total = users ? users.length : 0;
-  const userCount = users ? users.filter((u) => u.role === "user").length : 0;
-  const creatorCount = users
-    ? users.filter((u) => u.role === "creator").length
-    : 0;
 
   return NextResponse.json(
     {
       total,
-      userCount,
-      creatorCount,
     },
     { status: 200 }
   );
@@ -258,9 +249,7 @@ async function sendThankYouEmail(email: string) {
 
     if (!response.ok) {
       console.error("Resend API error:", result);
-      throw new Error(
-        `Resend API error: ${result || response.statusText}`
-      );
+      throw new Error(`Resend API error: ${result || response.statusText}`);
     }
 
     console.log("Email sent successfully:", result);
